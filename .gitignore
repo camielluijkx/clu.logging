@@ -1,0 +1,12 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs/clu.logging/v15
+/clu.logging.console/bin/Debug
+/clu.logging.console/obj/Debug
+/clu.logging.elasticsearch/bin/Debug
+/clu.logging.elasticsearch/obj/Debug
+/clu.logging.log4net/bin/Debug
+/clu.logging.log4net/obj/Debug
+/packages
