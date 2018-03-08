@@ -10,7 +10,7 @@ namespace clu.logging.log4net
     // [TODO] release post build > create + publish nuget package with bat script
     // [TODO] demo application to install nuget package
     // [TODO] pipeline for automated build and publish of nuget package
-    public static class Logger
+    public static class Log4netLogger
     {
         private static readonly ILog log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 

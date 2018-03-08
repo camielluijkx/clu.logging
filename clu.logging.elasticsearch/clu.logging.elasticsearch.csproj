@@ -43,10 +43,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Client.cs" />
-    <Compile Include="ElasticSearchCLientException.cs" />
-    <Compile Include="Searcher.cs" />
-    <Compile Include="Indexer.cs" />
+    <Compile Include="ElasticSearchService.cs" />
+    <Compile Include="ElasticSearchClientException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

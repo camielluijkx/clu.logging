@@ -49,7 +49,7 @@ namespace clu.logging.console
                 new { FirstName = "Dean", LastName = "Luijkx" },
             };
 
-            var response = await Indexer.BulkAsync(data);
+            var response = await ElasticSearchService.BulkAsync(data);
         }
 
         private static void TestBulk()
@@ -65,7 +65,7 @@ namespace clu.logging.console
                 LastName = "Luijkx"
             };
 
-            var response = await Indexer.IndexAsync("people", "person", "1", data);
+            var response = await ElasticSearchService.IndexAsync("people", "person", "1", data);
         }
 
         private static void TestIndex()
@@ -95,7 +95,7 @@ namespace clu.logging.console
             //  }
             //}";
 
-            var response = await Searcher.SearchAsync("people", "person", data);
+            var response = await ElasticSearchService.SearchAsync("people", "person", data);
         }
 
         private static void TestSearch()
@@ -109,21 +109,21 @@ namespace clu.logging.console
 
             try
             {
-                await Logger.LogDebugAsync("some debug message");
-                await Logger.LogErrorAsync("some error message");
-                await Logger.LogFatalAsync("some fatal message");
-                await Logger.LogInformationAsync("some info message");
-                await Logger.LogWarningAsync("some warning message");
+                await Log4netLogger.LogDebugAsync("some debug message");
+                await Log4netLogger.LogErrorAsync("some error message");
+                await Log4netLogger.LogFatalAsync("some fatal message");
+                await Log4netLogger.LogInformationAsync("some info message");
+                await Log4netLogger.LogWarningAsync("some warning message");
 
-                await Logger.LogInformationAsync("some stupid password");
+                await Log4netLogger.LogInformationAsync("some stupid password");
 
                 //throw new Exception("some exception occurred");
 
-                await Logger.LogErrorAsync("kaboom!", new ApplicationException("The application exploded"));
+                await Log4netLogger.LogErrorAsync("kaboom!", new ApplicationException("The application exploded"));
             }
             catch (Exception ex)
             {
-                await Logger.LogErrorAsync("Error trying to do something", ex);
+                await Log4netLogger.LogErrorAsync("Error trying to do something", ex);
             }
         }
 
