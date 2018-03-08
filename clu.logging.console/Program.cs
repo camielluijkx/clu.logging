@@ -73,21 +73,27 @@ namespace clu.logging.console
             TestIndexAsync().Wait();
         }
 
-        private static async Task TestSearchAsync() // [TODO] fix search query: https://www.elastic.co/guide/en/elasticsearch/client/net-api/current/elasticsearch-net-getting-started.html
+        private static async Task TestSearchAsync()
         {
             var data = new
             {
-                from = 0,
-                size = 10,
                 query = new
                 {
-                    match = new
+                    query_string = new
                     {
-                        field = "firstName",
-                        query = "Jimmy"
+                        query = "Luijkx"
                     }
                 }
             };
+
+            //var data = @"
+            //{
+            //  ""query"": {
+            //    ""query_string"": {
+            //      ""query"": ""Luijkx""
+            //    }
+            //  }
+            //}";
 
             var response = await Searcher.SearchAsync("people", "person", data);
         }

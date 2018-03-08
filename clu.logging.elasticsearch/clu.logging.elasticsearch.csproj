@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Client.cs" />
+    <Compile Include="ElasticSearchCLientException.cs" />
     <Compile Include="Searcher.cs" />
     <Compile Include="Indexer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

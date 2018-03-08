@@ -12,6 +12,10 @@ namespace clu.logging.console
             var response = await Client.Instance.BulkAsync<StringResponse>(body);
 
 #if DEBUG
+            var success = response.Success;
+            var successOrKnownError = response.SuccessOrKnownError;
+            var exception = response.OriginalException;
+
             Console.WriteLine(response.DebugInformation);
 #endif
 
@@ -24,6 +28,10 @@ namespace clu.logging.console
             var response = await Client.Instance.IndexAsync<StringResponse>(index, type, id, body);
 
 #if DEBUG
+            var success = response.Success;
+            var successOrKnownError = response.SuccessOrKnownError;
+            var exception = response.OriginalException;
+
             Console.WriteLine(response.DebugInformation);
 #endif
 
