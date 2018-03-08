@@ -16,4 +16,7 @@
       <dependency id="log4net.ElasticSearch" version="[2.3.6]" />
     </dependencies>
   </metadata>
+  <files>
+    <file src="bin\Debug\log4net.config" target="lib\net461" />
+  </files>
 </package>
