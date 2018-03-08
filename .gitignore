@@ -10,3 +10,6 @@
 /clu.logging.log4net/bin/Debug
 /clu.logging.log4net/obj/Debug
 /packages
+/clu.logging.console/obj/Release
+/clu.logging.elasticsearch/obj/Release
+/clu.logging.log4net/obj/Release
