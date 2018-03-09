@@ -6,9 +6,6 @@ using System.Threading.Tasks;
 
 namespace clu.logging.log4net
 {
-    // [TODO] install nuget packages in clu.console and verify if all ok
-    // [TODO] release post build > publish nuget package with bat script
-    // [TODO] pipeline for automated build and publish of nuget package
     public static class Log4netLogger
     {
         private static readonly ILog log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);

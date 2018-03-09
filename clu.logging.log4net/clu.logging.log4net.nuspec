@@ -17,6 +17,6 @@
     </dependencies>
   </metadata>
   <files>
-    <file src="bin\Debug\log4net.config" target="lib\net461" />
+    <file src="bin\Debug\log4net.config" target="content" />
   </files>
 </package>

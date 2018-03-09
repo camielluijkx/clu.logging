@@ -62,6 +62,10 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\clu.logging.baconipsum\clu.logging.baconipsum.csproj">
+      <Project>{cc712f1d-04c2-4651-974f-3825715aea01}</Project>
+      <Name>clu.logging.baconipsum</Name>
+    </ProjectReference>
     <ProjectReference Include="..\clu.logging.elasticsearch\clu.logging.elasticsearch.csproj">
       <Project>{b06532b9-9ae1-4710-b617-4f62816fad19}</Project>
       <Name>clu.logging.elasticsearch</Name>

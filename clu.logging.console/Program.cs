@@ -1,4 +1,5 @@
-﻿using clu.logging.log4net;
+﻿using clu.logging.baconipsum;
+using clu.logging.log4net;
 
 using log4net;
 
@@ -7,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace clu.logging.console
 {
+    // [TODO] explore NLog.Targets.ElasticSearch in clu.logging.nlog
+    // [TODO] install nuget packages in clu.console and verify if all ok (or move log4net config file)
+    // [TODO] setup pipeline for automated build and publish of nuget package (based on commit to master)
     class Program
     {
         private static void Initialize()
@@ -103,7 +107,7 @@ namespace clu.logging.console
             TestSearchAsync().Wait();
         }
 
-        private async static Task TestLoggingAsync()
+        private async static Task TestSomeLoggingAsync()
         {
             GlobalContext.Properties["correlationId"] = Guid.NewGuid();
 
@@ -127,9 +131,57 @@ namespace clu.logging.console
             }
         }
 
-        private static void TestLogging()
+        private static void TestSomeLogging()
         {
-            TestLoggingAsync().Wait();
+            TestSomeLoggingAsync().Wait();
+        }
+
+        private async static Task TestRandomLoggingAsync()
+        {
+            GlobalContext.Properties["correlationId"] = Guid.NewGuid();
+
+            try
+            {
+                var ipsum = await BaconIpsumClient.GetAsync();
+
+                var random = new Random();
+
+                var dice = random.Next(1, 6);
+
+                switch (dice)
+                {
+                    case 1:
+                        await Log4netLogger.LogDebugAsync(ipsum);
+                        break;
+                    case 2:
+                        await Log4netLogger.LogErrorAsync(ipsum);
+                        break;
+                    case 3:
+                        await Log4netLogger.LogFatalAsync(ipsum);
+                        break;
+                    case 4:
+                        await Log4netLogger.LogInformationAsync(ipsum);
+                        break;
+                    case 5:
+                        await Log4netLogger.LogWarningAsync(ipsum);
+                        break;
+                    case 6:
+                        await Log4netLogger.LogErrorAsync("bad luck", new Exception("no meat today"));
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                await Log4netLogger.LogErrorAsync("Error trying to do something", ex);
+            }
+        }
+
+        private static void TestRandomLogging()
+        {
+            for (var i = 0; i < 100; i++)
+            {
+                TestRandomLoggingAsync().Wait();
+            }
         }
 
         private static void ShowMenu()
@@ -162,7 +214,8 @@ namespace clu.logging.console
                 }
                 else if (choice == '4')
                 {
-                    TestLogging();
+                    //TestSomeLogging();
+                    TestRandomLogging();
                 }
             }
 

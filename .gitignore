@@ -13,3 +13,4 @@
 /clu.logging.console/obj/Release
 /clu.logging.elasticsearch/obj/Release
 /clu.logging.log4net/obj/Release
+/clu.logging.baconipsum

@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "clu.logging.log4net", "clu.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "clu.logging.elasticsearch", "clu.logging.elasticsearch\clu.logging.elasticsearch.csproj", "{B06532B9-9AE1-4710-B617-4F62816FAD19}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "clu.logging.baconipsum", "clu.logging.baconipsum\clu.logging.baconipsum.csproj", "{CC712F1D-04C2-4651-974F-3825715AEA01}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{B06532B9-9AE1-4710-B617-4F62816FAD19}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B06532B9-9AE1-4710-B617-4F62816FAD19}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B06532B9-9AE1-4710-B617-4F62816FAD19}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC712F1D-04C2-4651-974F-3825715AEA01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC712F1D-04C2-4651-974F-3825715AEA01}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC712F1D-04C2-4651-974F-3825715AEA01}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC712F1D-04C2-4651-974F-3825715AEA01}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
