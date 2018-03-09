@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 
 namespace clu.logging.console
 {
-    // [TODO] explore NLog.Targets.ElasticSearch in clu.logging.nlog
-    // [TODO] install nuget packages in clu.console and verify if all ok (or move log4net config file)
+    // [TODO] automate cleanup of log data
+    // [TODO] explore NLog.Targets.ElasticSearch in a separate clu.logging.nlog library | nuget package
     // [TODO] setup pipeline for automated build and publish of nuget package (based on commit to master)
     class Program
     {
@@ -146,7 +146,7 @@ namespace clu.logging.console
 
                 var random = new Random();
 
-                var dice = random.Next(1, 6);
+                var dice = random.Next(1, 7);
 
                 switch (dice)
                 {
