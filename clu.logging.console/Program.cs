@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace clu.logging.console
 {
     // [TODO] automate cleanup of log data
-    // [TODO] implement clu.logging.webapi (+ client) for clu.console.demo.net35
+    // [TODO] implement clu.logging.webapi (+ client) for clu.console.demo.net35 (fix file logging)
     // [TODO] explore NLog.Targets.ElasticSearch in a separate clu.logging.nlog library | nuget package
     // [TODO] setup pipeline for automated build and publish of nuget package (based on commit to master)
     class Program
