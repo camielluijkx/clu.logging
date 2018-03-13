@@ -6,11 +6,30 @@ using System.Threading.Tasks;
 
 namespace clu.logging.log4net
 {
-    public static class Log4netLogger
+    public class Log4netLogger
     {
-        private static readonly ILog log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+        private readonly ILog log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
-        public async static Task LogDebugAsync(string message)
+        private static Log4netLogger instance;
+
+        public static Log4netLogger Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new Log4netLogger();
+                }
+
+                return instance;
+            }
+        }
+
+        protected Log4netLogger()
+        {
+        }
+
+        public async Task LogDebugAsync(string message)
         {
             await Task.Run(() =>
             {
@@ -18,7 +37,7 @@ namespace clu.logging.log4net
             });
         }
 
-        public async static Task LogErrorAsync(string message)
+        public async Task LogErrorAsync(string message)
         {
             await Task.Run(() =>
             {
@@ -26,7 +45,7 @@ namespace clu.logging.log4net
             });
         }
 
-        public async static Task LogErrorAsync(string message, Exception ex)
+        public async Task LogErrorAsync(string message, Exception ex)
         {
             await Task.Run(() =>
             {
@@ -34,7 +53,7 @@ namespace clu.logging.log4net
             });
         }
 
-        public async static Task LogFatalAsync(string message)
+        public async Task LogFatalAsync(string message)
         {
             await Task.Run(() =>
             {
@@ -42,7 +61,7 @@ namespace clu.logging.log4net
             });
         }
 
-        public async static Task LogInformationAsync(string message)
+        public async Task LogInformationAsync(string message)
         {
             await Task.Run(() =>
             {
@@ -50,7 +69,7 @@ namespace clu.logging.log4net
             });
         }
 
-        public async static Task LogWarningAsync(string message)
+        public async Task LogWarningAsync(string message)
         {
             await Task.Run(() =>
             {

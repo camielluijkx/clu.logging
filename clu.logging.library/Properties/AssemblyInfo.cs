@@ -1,15 +1,16 @@
 ﻿using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("clu.logging.console")]
+[assembly: AssemblyTitle("clu.logging.library")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("CLU")]
-[assembly: AssemblyProduct("clu.logging.console")]
-[assembly: AssemblyCopyright("Copyright © CLU 2018")]
+[assembly: AssemblyCompany("HP Inc.")]
+[assembly: AssemblyProduct("clu.logging.library")]
+[assembly: AssemblyCopyright("Copyright © HP Inc. 2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -19,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("b2052215-9640-4f9d-a85b-f266cf68c1de")]
+[assembly: Guid("5f90c7a4-5f1a-4aae-b54a-4515f661c217")]
 
 // Version information for an assembly consists of the following four values:
 //
@@ -33,5 +34,3 @@ using System.Runtime.InteropServices;
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
-
-[assembly: log4net.Config.XmlConfigurator(ConfigFile = "log4net.config", Watch = true)]

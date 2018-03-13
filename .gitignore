@@ -14,3 +14,8 @@
 /clu.logging.elasticsearch/obj/Release
 /clu.logging.log4net/obj/Release
 /clu.logging.baconipsum
+/clu.logging.library/bin/Debug
+/clu.logging.library/obj/Debug
+/.vs/config
+/clu.logging.webapi/bin
+/clu.logging.webapi/obj/Debug
