@@ -18,6 +18,10 @@ namespace clu.logging.webapi.controllers
 
         }
 
+        /// <summary>
+        /// Returns API version.
+        /// </summary>
+        /// <returns>API version.</returns>
         [Route("")]
         [HttpGet]
         public override HttpResponseMessage Get()

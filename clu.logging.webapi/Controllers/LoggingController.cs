@@ -1,4 +1,5 @@
-﻿using clu.logging.log4net;
+﻿using clu.logging.library.Extensions;
+using clu.logging.log4net;
 
 using Swashbuckle.Swagger.Annotations;
 
@@ -14,25 +15,196 @@ namespace clu.logging.webapi.controllers
     [RoutePrefix("Logging")]
     public class LoggingController : ApiController
     {
-        [HttpPost]
-        [Route("Debug")]
-        [SwaggerResponse(HttpStatusCode.OK, "Debug message was logged successfully.")]
-        [SwaggerResponse(HttpStatusCode.InternalServerError, Type = typeof(InternalServerErrorResult))]
-        public async Task<IHttpActionResult> PostDebugMessageAsync([FromBody] dynamic body)
+        private enum LogLevel
+        {
+            Debug,
+            Error,
+            Fatal,
+            Info,
+            Warn
+        }
+
+        private class LogRequest
+        {
+            public LogLevel Level { get; }
+
+            public string Message { get; }
+
+            public LogRequest(LogLevel level, dynamic body)
+            {
+                Level = level;
+
+                if (body == null)
+                {
+                    throw new ArgumentNullException(nameof(body));
+                }
+
+                if (body.message == null || string.IsNullOrEmpty(body.message))
+                {
+                    throw new ArgumentNullException(nameof(body.message));
+                }
+
+                Message = body.message;
+            }
+        }
+
+        private class LogResponse
+        {
+            public bool Success { get; }
+
+            public string Message { get; }
+
+            public LogResponse(bool success, string message)
+            {
+                Success = success;
+                Message = message;
+            }
+        }
+
+        private async Task<LogResponse> LogMessageAsync(LogRequest request)
         {
             try
             {
-                string message = body.message;
+                if (request == null)
+                {
+                    throw new ArgumentNullException(nameof(request));
+                }
 
-                await Log4netLogger.Instance.LogDebugAsync(message);
+                switch (request.Level)
+                {
+                    case LogLevel.Debug:
+                    {
+                        await Log4netLogger.Instance.LogDebugAsync(request.Message);
+                        break;
+                    }
+                    case LogLevel.Error:
+                    {
+                        await Log4netLogger.Instance.LogErrorAsync(request.Message);
+                        break;
+                    }
+                    case LogLevel.Fatal:
+                    {
+                        await Log4netLogger.Instance.LogFatalAsync(request.Message);
+                        break;
+                    }
+                    case LogLevel.Info:
+                    {
+                        await Log4netLogger.Instance.LogInformationAsync(request.Message);
+                        break;
+                    }
+                    case LogLevel.Warn:
+                    {
+                        await Log4netLogger.Instance.LogWarningAsync(request.Message);
+                        break;
+                    }
 
-                return Ok();
+                    default: 
+                    {
+                        return new LogResponse(false, $"Log level {request.Level} is not supported!");
+                    }
+                }
+
+                return new LogResponse(true, "Message was logged succesfull!");
             }
             catch (Exception ex)
             {
-                await Log4netLogger.Instance.LogErrorAsync("An error occurred trying to log debug message", ex);
-                return InternalServerError(ex);
+                return new LogResponse(false, $"An error occurred trying to log debug message: {ex.ToExceptionMessage()}");
             }
+        }
+
+        /// <summary>
+        /// Logs a debug message.
+        /// </summary>
+        /// <param name="body">Body with message.</param>
+        /// <returns>API response.</returns>
+        [HttpPost]
+        [Route("Debug")]
+        [SwaggerResponse(HttpStatusCode.OK, Type = typeof(OkResult))]
+        [SwaggerResponse(HttpStatusCode.InternalServerError, Type = typeof(InternalServerErrorResult))]
+        public async Task<IHttpActionResult> LogDebugMessageAsync([FromBody] dynamic body)
+        {
+            var response = await LogMessageAsync(new LogRequest(LogLevel.Debug, body));
+            if (response.Success)
+            {
+                Ok();
+            }
+            return Content(HttpStatusCode.InternalServerError, response.Message);
+        }
+
+        /// <summary>
+        /// Logs an error message.
+        /// </summary>
+        /// <param name="body">Body with message.</param>
+        /// <returns>API response.</returns>
+        [HttpPost]
+        [Route("Error")]
+        [SwaggerResponse(HttpStatusCode.OK, Type = typeof(OkResult))]
+        [SwaggerResponse(HttpStatusCode.InternalServerError, Type = typeof(InternalServerErrorResult))]
+        public async Task<IHttpActionResult> LogErrorMessageAsync([FromBody] dynamic body)
+        {
+            var response = await LogMessageAsync(new LogRequest(LogLevel.Error, body));
+            if (response.Success)
+            {
+                Ok();
+            }
+            return Content(HttpStatusCode.InternalServerError, response.Message);
+        }
+
+        /// <summary>
+        /// Logs a fatal message.
+        /// </summary>
+        /// <param name="body">Body with message.</param>
+        /// <returns>API response.</returns>
+        [HttpPost]
+        [Route("Fatal")]
+        [SwaggerResponse(HttpStatusCode.OK, Type = typeof(OkResult))]
+        [SwaggerResponse(HttpStatusCode.InternalServerError, Type = typeof(InternalServerErrorResult))]
+        public async Task<IHttpActionResult> LogMessageAsync([FromBody] dynamic body)
+        {
+            var response = await LogMessageAsync(new LogRequest(LogLevel.Fatal, body));
+            if (response.Success)
+            {
+                Ok();
+            }
+            return Content(HttpStatusCode.InternalServerError, response.Message);
+        }
+
+        /// <summary>
+        /// Logs an info message.
+        /// </summary>
+        /// <param name="body">Body with message.</param>
+        /// <returns>API response.</returns>
+        [HttpPost]
+        [Route("Info")]
+        [SwaggerResponse(HttpStatusCode.OK, Type = typeof(OkResult))]
+        [SwaggerResponse(HttpStatusCode.InternalServerError, Type = typeof(InternalServerErrorResult))]
+        public async Task<IHttpActionResult> LogInfoMessageAsync([FromBody] dynamic body)
+        {
+            var response = await LogMessageAsync(new LogRequest(LogLevel.Info, body));
+            if (response.Success)
+            {
+                Ok();
+            }
+            return Content(HttpStatusCode.InternalServerError, response.Message);
+        }
+
+        /// <summary>
+        /// Logs a warn message.
+        /// </summary>
+        /// <param name="body">Body with message.</param>
+        /// <returns>API response.</returns>
+        [HttpPost]
+        [Route("Warn")]
+        [SwaggerResponse(HttpStatusCode.OK, Type = typeof(OkResult))]
+        [SwaggerResponse(HttpStatusCode.InternalServerError, Type = typeof(InternalServerErrorResult))]
+        public async Task<IHttpActionResult> LogWarnMessageAsync([FromBody] dynamic body)
+        {
+            var response = await LogMessageAsync(new LogRequest(LogLevel.Warn, body));
+            if (response.Success)
+            {
+                Ok();
+            }
+            return Content(HttpStatusCode.InternalServerError, response.Message);
         }
     }
 }
