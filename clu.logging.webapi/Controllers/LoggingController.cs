@@ -39,7 +39,7 @@ namespace clu.logging.webapi.controllers
                     throw new ArgumentNullException(nameof(body));
                 }
 
-                if (body.message == null || string.IsNullOrEmpty(body.message))
+                if (body.message == null)
                 {
                     throw new ArgumentNullException(nameof(body.message));
                 }
@@ -104,7 +104,7 @@ namespace clu.logging.webapi.controllers
                     }
                 }
 
-                return new LogResponse(true, "Message was logged succesfull!");
+                return new LogResponse(true, "Message was logged succesfully!");
             }
             catch (Exception ex)
             {
