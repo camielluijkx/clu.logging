@@ -2,21 +2,19 @@
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
-/.vs/clu.logging/v15
-/clu.logging.console/bin/Debug
-/clu.logging.console/obj/Debug
-/clu.logging.elasticsearch/bin/Debug
-/clu.logging.elasticsearch/obj/Debug
-/clu.logging.log4net/bin/Debug
-/clu.logging.log4net/obj/Debug
 /packages
-/clu.logging.console/obj/Release
-/clu.logging.elasticsearch/obj/Release
-/clu.logging.log4net/obj/Release
-/clu.logging.baconipsum
-/clu.logging.library/bin/Debug
-/clu.logging.library/obj/Debug
 /.vs/config
-/clu.logging.webapi/bin
-/clu.logging.webapi/obj/Debug
-/.vs/clu.logging/v14/.suo
+/.vs/clu.logging/v14
+/.vs/clu.logging/v15
+/clu.logging.baconipsum.net461/bin
+/clu.logging.baconipsum.net461/obj
+/clu.logging.console.net461/bin
+/clu.logging.console.net461/obj
+/clu.logging.elasticsearch.net461/bin
+/clu.logging.elasticsearch.net461/obj
+/clu.logging.library.net461/bin
+/clu.logging.library.net461/obj
+/clu.logging.log4net.net461/bin
+/clu.logging.log4net.net461/obj
+/clu.logging.webapi.net461/bin
+/clu.logging.webapi.net461/obj

@@ -3,17 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2036
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "clu.logging.console", "clu.logging.console\clu.logging.console.csproj", "{B2052215-9640-4F9D-A85B-F266CF68C1DE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "clu.logging.console.net461", "clu.logging.console.net461\clu.logging.console.net461.csproj", "{B2052215-9640-4F9D-A85B-F266CF68C1DE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "clu.logging.log4net", "clu.logging.log4net\clu.logging.log4net.csproj", "{BECCCEAC-CD18-421A-8283-9199D788BD77}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "clu.logging.log4net.net461", "clu.logging.log4net.net461\clu.logging.log4net.net461.csproj", "{BECCCEAC-CD18-421A-8283-9199D788BD77}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "clu.logging.elasticsearch", "clu.logging.elasticsearch\clu.logging.elasticsearch.csproj", "{B06532B9-9AE1-4710-B617-4F62816FAD19}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "clu.logging.elasticsearch.net461", "clu.logging.elasticsearch.net461\clu.logging.elasticsearch.net461.csproj", "{B06532B9-9AE1-4710-B617-4F62816FAD19}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "clu.logging.baconipsum", "clu.logging.baconipsum\clu.logging.baconipsum.csproj", "{CC712F1D-04C2-4651-974F-3825715AEA01}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "clu.logging.baconipsum.net461", "clu.logging.baconipsum.net461\clu.logging.baconipsum.net461.csproj", "{CC712F1D-04C2-4651-974F-3825715AEA01}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "clu.logging.webapi", "clu.logging.webapi\clu.logging.webapi.csproj", "{1C21A5D9-5471-450C-8444-56924F8FFD89}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "clu.logging.webapi.net461", "clu.logging.webapi.net461\clu.logging.webapi.net461.csproj", "{1C21A5D9-5471-450C-8444-56924F8FFD89}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "clu.logging.library", "clu.logging.library\clu.logging.library.csproj", "{5F90C7A4-5F1A-4AAE-B54A-4515F661C217}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "clu.logging.library.net461", "clu.logging.library.net461\clu.logging.library.net461.csproj", "{5F90C7A4-5F1A-4AAE-B54A-4515F661C217}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
