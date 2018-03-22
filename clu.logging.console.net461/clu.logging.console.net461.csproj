@@ -71,6 +71,10 @@
       <Project>{b06532b9-9ae1-4710-b617-4f62816fad19}</Project>
       <Name>clu.logging.elasticsearch.net461</Name>
     </ProjectReference>
+    <ProjectReference Include="..\clu.logging.library.net350\clu.logging.library.net350.csproj">
+      <Project>{aba2eb05-2fdc-4dbe-8b17-8117777bd6fc}</Project>
+      <Name>clu.logging.library.net350</Name>
+    </ProjectReference>
     <ProjectReference Include="..\clu.logging.log4net.net461\clu.logging.log4net.net461.csproj">
       <Project>{beccceac-cd18-421a-8283-9199d788bd77}</Project>
       <Name>clu.logging.log4net.net461</Name>

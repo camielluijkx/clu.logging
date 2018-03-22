@@ -46,6 +46,12 @@
   <ItemGroup>
     <None Include="clu.logging.baconipsum.net461.nuspec" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\clu.logging.library.net461\clu.logging.library.net461.csproj">
+      <Project>{5F90C7A4-5F1A-4AAE-B54A-4515F661C217}</Project>
+      <Name>clu.logging.library.net461</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>nuget pack $(ProjectPath) -Symbols -Properties Configuration=$(ConfigurationName) -IncludeReferencedProjects</PostBuildEvent>

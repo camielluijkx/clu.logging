@@ -1,48 +1,21 @@
 ﻿using clu.logging.baconipsum.net461;
+using clu.logging.library.net350.console;
 using clu.logging.log4net.net461;
 
 using log4net;
 
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace clu.logging.console.net461
 {
-    // [TODO] 1) automate cleanup of log data
-    // [TODO] 2) implement clu.logging.webapi (+ client) for clu.console.demo.net35 (fix file logging)
-    // [TODO] 3) explore NLog.Targets.ElasticSearch in a separate clu.logging.nlog library | nuget package
-    // [TODO] 4) setup pipeline for automated build and publish of nuget package (based on commit to master)
+    // [TODO] clu.console (library) as nuget package
+    // [TODO] explore NLog.Targets.ElasticSearch in a separate clu.logging.nlog library | nuget package
+    // [TODO] setup pipeline for automated build and publish of nuget package (based on commit to master)
     class Program
     {
-        private static void Initialize()
-        {
-            Console.WriteLine("Initializing...");
-
-            Console.Clear();
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine("****************************************************************");
-            Console.WriteLine("*******************      Logging Console     *******************");
-            Console.WriteLine("****************************************************************");
-            Console.WriteLine("");
-            Console.WriteLine("");
-
-            Console.BackgroundColor = ConsoleColor.Blue;
-
-            Console.WriteLine("\t\t\t\t\t\t\t\t");
-            Console.WriteLine(@"                 _________ .____     ____ ___                   ");
-            Console.WriteLine(@"                 \_   ___ \|    |   |    |   \                  ");
-            Console.WriteLine(@"                 /    \  \/|    |   |    |   /                  ");
-            Console.WriteLine(@"                 \     \___|    |___|    |  /                   ");
-            Console.WriteLine(@"                  \______  /_______ \______/                    ");
-            Console.WriteLine(@"                         \/        \/                           ");
-            Console.WriteLine("\t\t\t\t\t\t\t\t");
-            Console.WriteLine("");
-            Console.WriteLine("");
-
-            Console.BackgroundColor = ConsoleColor.Black;
-        }
-
-        private static async Task TestBulkAsync()
+        private static async Task TestBulkIndexAsync()
         {
             var data = new object[]
             {
@@ -57,12 +30,12 @@ namespace clu.logging.console.net461
             var response = await ElasticSearchService.BulkAsync(data);
         }
 
-        private static void TestBulk()
+        private static void TestBulkIndex()
         {
-            TestBulkAsync().Wait();
+            TestBulkIndexAsync().Wait();
         }
 
-        private static async Task TestIndexAsync()
+        private static async Task TestSingleIndexAsync()
         {
             var data = new
             {
@@ -73,12 +46,12 @@ namespace clu.logging.console.net461
             var response = await ElasticSearchService.IndexAsync("people", "person", "1", data);
         }
 
-        private static void TestIndex()
+        private static void TestSingleIndex()
         {
-            TestIndexAsync().Wait();
+            TestSingleIndexAsync().Wait();
         }
 
-        private static async Task TestSearchAsync()
+        private static async Task TestSearchIndexAsync()
         {
             var data = new
             {
@@ -103,9 +76,9 @@ namespace clu.logging.console.net461
             var response = await ElasticSearchService.SearchAsync("people", "person", data);
         }
 
-        private static void TestSearch()
+        private static void TestSearchIndex()
         {
-            TestSearchAsync().Wait();
+            TestSearchIndexAsync().Wait();
         }
 
         private async static Task TestSomeLoggingAsync()
@@ -139,8 +112,6 @@ namespace clu.logging.console.net461
 
         private async static Task TestRandomLoggingAsync()
         {
-            GlobalContext.Properties["correlationId"] = Guid.NewGuid();
-
             try
             {
                 var ipsum = await BaconIpsumClient.GetAsync();
@@ -152,35 +123,35 @@ namespace clu.logging.console.net461
                 switch (dice)
                 {
                     case 1:
-                    {
-                        await Log4netLogger.Instance.LogDebugAsync(ipsum);
-                        break;
-                    }
+                        {
+                            await Log4netLogger.Instance.LogDebugAsync(ipsum);
+                            break;
+                        }
                     case 2:
-                    {
-                        await Log4netLogger.Instance.LogErrorAsync(ipsum);
-                        break;
-                    }
+                        {
+                            await Log4netLogger.Instance.LogErrorAsync(ipsum);
+                            break;
+                        }
                     case 3:
-                    {
-                        await Log4netLogger.Instance.LogFatalAsync(ipsum);
-                        break;
-                    }
+                        {
+                            await Log4netLogger.Instance.LogFatalAsync(ipsum);
+                            break;
+                        }
                     case 4:
-                    {
-                        await Log4netLogger.Instance.LogInformationAsync(ipsum);
-                        break;
-                    }
+                        {
+                            await Log4netLogger.Instance.LogInformationAsync(ipsum);
+                            break;
+                        }
                     case 5:
-                    {
-                        await Log4netLogger.Instance.LogWarningAsync(ipsum);
-                        break;
-                    }
+                        {
+                            await Log4netLogger.Instance.LogWarningAsync(ipsum);
+                            break;
+                        }
                     case 6:
-                    {
-                        await Log4netLogger.Instance.LogErrorAsync("bad luck", new Exception("no meat today"));
-                        break;
-                    }
+                        {
+                            await Log4netLogger.Instance.LogErrorAsync("bad luck", new Exception("no meat today"));
+                            break;
+                        }
                 }
             }
             catch (Exception ex)
@@ -189,56 +160,33 @@ namespace clu.logging.console.net461
             }
         }
 
-        private static void TestRandomLogging()
+        private static void TestRandomLogging(int i)
         {
-            for (var i = 0; i < 100; i++)
-            {
-                TestRandomLoggingAsync().Wait();
-            }
+            TestRandomLoggingAsync().Wait();
         }
 
-        private static void ShowMenu()
+        private static void TestRandomLogging()
         {
-            Console.WriteLine("Hello {0}, what would you like to do?", Environment.UserName);
+            GlobalContext.Properties["correlationId"] = Guid.NewGuid();
 
-            char choice = ' ';
-            while (choice != '0')
+            for (var i = 0; i < 100; i++)
             {
-                Console.WriteLine("");
-                Console.WriteLine("[0] Exit");
-                Console.WriteLine("[1] Bulk");
-                Console.WriteLine("[2] Index");
-                Console.WriteLine("[3] Search");
-                Console.WriteLine("[4] Logging");
-                ConsoleKeyInfo consoleKey = Console.ReadKey(true);
-                choice = consoleKey.KeyChar;
-
-                if (choice == '1')
-                {
-                    TestBulk();
-                }
-                else if (choice == '2')
-                {
-                    TestIndex();
-                }
-                else if (choice == '3')
-                {
-                    TestSearch();
-                }
-                else if (choice == '4')
-                {
-                    //TestSomeLogging();
-                    TestRandomLogging();
-                }
+                TestRandomLogging(i);
             }
-
-            Environment.Exit(0);
         }
 
         static void Main(string[] args)
         {
-            Initialize();
-            ShowMenu();
+            ConsoleHelper.Initialize(".NET 4.6.1");
+            ConsoleHelper.ShowMenu(
+                new List<MenuItem>
+                {
+                    new MenuItem(1, "Test Bulk Index", TestBulkIndex),
+                    new MenuItem(2, "Test Single Index", TestSingleIndex),
+                    new MenuItem(3, "Test Search Index", TestSearchIndex),
+                    new MenuItem(4, "Test Some Logging", TestSomeLogging),
+                    new MenuItem(5, "Test Random Logging", TestRandomLogging)
+                });
         }
     }
 }

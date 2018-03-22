@@ -18,3 +18,11 @@
 /clu.logging.log4net.net461/obj
 /clu.logging.webapi.net461/bin
 /clu.logging.webapi.net461/obj
+/clu.logging.baconipsum.net350/bin/Debug
+/clu.logging.baconipsum.net350/obj/Debug
+/clu.logging.console.net350/bin/Debug
+/clu.logging.console.net350/obj/Debug
+/clu.logging.library.net350/bin/Debug
+/clu.logging.library.net350/obj/Debug
+/clu.logging.log4net.net350/bin/Debug
+/clu.logging.log4net.net350/obj/Debug

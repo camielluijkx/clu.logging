@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace clu.logging.log4net.net461
 {
-    public class Log4netLogger
+    public class Log4netLogger // [TODO] setup value for domain when using logging api
     {
         private readonly ILog log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 

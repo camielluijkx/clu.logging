@@ -126,7 +126,7 @@ namespace clu.logging.webapi.controllers.net461
             var response = await LogMessageAsync(new LogRequest(LogLevel.Debug, body));
             if (response.Success)
             {
-                Ok();
+                return Ok();
             }
             return Content(HttpStatusCode.InternalServerError, response.Message);
         }
@@ -145,7 +145,7 @@ namespace clu.logging.webapi.controllers.net461
             var response = await LogMessageAsync(new LogRequest(LogLevel.Error, body));
             if (response.Success)
             {
-                Ok();
+                return Ok();
             }
             return Content(HttpStatusCode.InternalServerError, response.Message);
         }
@@ -164,7 +164,7 @@ namespace clu.logging.webapi.controllers.net461
             var response = await LogMessageAsync(new LogRequest(LogLevel.Fatal, body));
             if (response.Success)
             {
-                Ok();
+                return Ok();
             }
             return Content(HttpStatusCode.InternalServerError, response.Message);
         }
@@ -183,7 +183,7 @@ namespace clu.logging.webapi.controllers.net461
             var response = await LogMessageAsync(new LogRequest(LogLevel.Info, body));
             if (response.Success)
             {
-                Ok();
+                return Ok();
             }
             return Content(HttpStatusCode.InternalServerError, response.Message);
         }
@@ -202,7 +202,7 @@ namespace clu.logging.webapi.controllers.net461
             var response = await LogMessageAsync(new LogRequest(LogLevel.Warn, body));
             if (response.Success)
             {
-                Ok();
+                return Ok();
             }
             return Content(HttpStatusCode.InternalServerError, response.Message);
         }
