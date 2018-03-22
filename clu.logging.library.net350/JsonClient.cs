@@ -4,7 +4,6 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 
 using System;
-using System.Collections.Generic;
 using System.Net;
 
 namespace clu.logging.library.net350
@@ -15,11 +14,14 @@ namespace clu.logging.library.net350
         {
             try
             {
+                ServicePointManager.SecurityProtocol = SecurityProtocolTypeExtensions.Tls12;
+
                 var client = new WebClient { Headers = { [HttpRequestHeader.ContentType] = "application/json" } };
 
                 var response = client.DownloadString(new Uri(url));
 
-                return JsonConvert.DeserializeObject(response);
+                //return JsonConvert.DeserializeObject(response);
+                return response;
             }
             catch (Exception ex) // [TODO] improve console logging
             {

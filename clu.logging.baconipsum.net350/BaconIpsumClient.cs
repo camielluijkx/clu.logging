@@ -11,7 +11,7 @@ namespace clu.logging.baconipsum.net350
         {
             try
             {
-                var apiUrl = "https://baconipsum.com/api/?type=all-meat&paras=1&start-with-lorem=0&format=text";
+                var apiUrl = "https://baconipsum.com/api?type=all-meat&paras=1&start-with-lorem=0&format=text";
                 var ipsum = JsonClient.Get(apiUrl);
 
                 if (ipsum == null)
